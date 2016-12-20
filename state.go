@@ -4,10 +4,10 @@ package luajit
 #cgo LDFLAGS: -lluajit-5.1
 #cgo linux LDFLAGS: -lm -ldl
 
-#include <luajit-2.0/lua.h>
-#include <luajit-2.0/lauxlib.h>
-#include <luajit-2.0/luajit.h>
-#include <luajit-2.0/lualib.h>
+#include <luajit-2.1/lua.h>
+#include <luajit-2.1/lauxlib.h>
+#include <luajit-2.1/luajit.h>
+#include <luajit-2.1/lualib.h>
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -181,7 +181,7 @@ func gowritechunk(writer, buf unsafe.Pointer, bufsz C.size_t) int {
 //
 // This function does not pop the Lua function from the stack.
 func (s *State) Dump(w io.Writer) error {
-	r := int(C.dump(s.l, w))
+	r := int(C.dump(s.l, unsafe.Pointer(&w)))
 	return numtoerror(r)
 }
 

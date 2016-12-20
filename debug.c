@@ -1,4 +1,4 @@
-#include <luajit-2.0/lua.h>
+#include <luajit-2.1/lua.h>
 #include "_cgo_export.h"
 
 static void
